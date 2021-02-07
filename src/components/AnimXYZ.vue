@@ -1,20 +1,105 @@
 <template>
-  <div class="lets-animate">
-    <h1>Composable CSS Animation with AnimXYZ</h1>
+  <div class="xyz-animate">
+    <!-- <h1>Composable CSS Animation with AnimXYZ</h1> -->
     <div class="harmburger-menu" @click="toggleMenu()">
-      <div class="line"></div>
-      <XyzTransitionGroup appear :xyz="{animate}">
+      <XyzTransitionGroup appear xyz="fade stagger-1 delay-5">
         <div
           class="line"
-          key="index"
-          ref="toggler"
+          key="1"
+          :class="{ top: toggled, deactivated: !toggled }"
+        ></div>
+        <div
+          class="line middle"
+          key="2"
+          :class="{ active: toggled, deactivated: !toggled }"
+        ></div>
+        <div
+          class="line"
+          key="3"
+          :class="{ bottom: toggled, deactivated: !toggled }"
         ></div>
       </XyzTransitionGroup>
-      <div class="line"></div>
     </div>
-    <XyzTransitionGroup appear xyz="small-100% origin-top-right">
-      <div class="circle" key="index" v-if="toggled"></div>
+
+    <XyzTransitionGroup
+      appear
+      xyz="fade small stagger ease-out-back"
+      duration="auto"
+    >
+      <div class="shape" key="1" v-if="toggled">
+        <p class="xyz-nested nav-item">
+          Home
+        </p>
+        <p class="xyz-nested nav-item">
+         About
+        </p>
+        <p class="xyz-nested nav-item">
+         Contact
+        </p>
+
+        <!-- <p class="hero-text xyz-nested" xyz="duration-10 delay-2">
+          Curabitur blandit tempus porttitor. Morbi leo risus.
+        </p> -->
+      </div>
     </XyzTransitionGroup>
+
+    <!-- <XyzTransition appear duration="auto">
+      <div class="page-wrap">
+        <div class="page-hero" xyz="fade small stagger ease-out-back">
+          <div class="hero-logo xyz-nested"></div>
+          <p class="hero-text xyz-nested">
+            Curabitur blandit tempus porttitor. Morbi leo risus.
+          </p>
+        </div>
+        <div
+          class="page-features"
+          xyz="fade flip-down stagger duration-10 delay-2 ease-out-back"
+        >
+          <div class="feature-item xyz-nested"></div>
+          <div class="feature-item xyz-nested"></div>
+          <div class="feature-item xyz-nested"></div>
+        </div>
+        <div class="page-section" xyz="fade small stagger delay-4 ease-in-out">
+          <div class="section-left" xyz="fade left stagger">
+            <div class="section-item xyz-nested"></div>
+            <div class="section-item xyz-nested"></div>
+            <div class="section-item xyz-nested"></div>
+          </div>
+          <div class="section-right xyz-nested" xyz="fade big delay-10"></div>
+        </div>
+        <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
+          <div
+            class="footer-logo xyz-nested"
+            xyz="fade left ease-in-out delay-10"
+          ></div>
+          <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+            <div class="footer-item xyz-nested"></div>
+            <div class="footer-item xyz-nested"></div>
+            <div class="footer-item xyz-nested"></div>
+          </div>
+        </div>
+      </div>
+    </XyzTransition> -->
+
+    <!-- <button @click="isAnimate = !isAnimate">Animate</button>
+    <XyzTransition
+      xyz="fade up in-left in-rotate-left out-right out-rotate-right"
+    >
+      <div class="square" v-if="isAnimate"></div>
+    </XyzTransition> -->
+
+    <!-- <XyzTransition xyz="fade" v-xyz="[`left-${utilityLevel}`]">
+      <div class="square" v-if="isAnimate"></div>
+    </XyzTransition> -->
+
+    <!-- <XyzTransition xyz="fade small" duration="auto">
+      <div class="item-flex"  v-if="isAnimate">
+        <div class="square"></div>
+        <div class="square xyz-nested"></div>
+        <div class="square xyz-nested"></div>
+        <div class="square xyz-nested"></div>
+      </div>
+    </XyzTransition> -->
   </div>
 </template>
 
@@ -23,50 +108,81 @@ export default {
   data() {
     return {
       toggled: false,
-      isActive: false,
-      animate: ""
+      animate: "",
+      isAnimate: true,
+      utilityLevel: "5",
     };
   },
   methods: {
     toggleMenu() {
-      this.animate = 'fade rotate-right-50%'
-      //toggler this.$refs.toggler.remove();
       this.toggled = !this.toggled;
-      // this.isActive = !this.isActive;
     },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.lets-animate {
-  text-align: center;
+.item-flex {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
+.nav-item {
+  color: #fff;
+}
+.deactivated {
+  transform: rotate(0deg);
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.top {
+  background-color: #fff !important;
+  transition: all 0.2s ease-in-out;
+  transform: rotate(45deg);
+}
+.bottom {
+  background-color: #fff !important;
+  transition: all 0.2s ease-in-out;
+  transform: rotate(-45deg);
+}
+
 .harmburger-menu {
   cursor: pointer;
+  z-index: 22;
+  position: absolute;
+  top: 2rem;
 }
 .line {
   background-color: #000;
   width: 50px;
-  height: 2.2px;
-  margin-bottom: 5px;
+  height: 2px;
 }
 .line:nth-of-type(2) {
-  margin-left: 5px;
+  margin: 5px 0;
 }
 .active {
-  visibility: hidden;
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  display: none;
 }
-.circle {
-  width: 10rem;
-  height: 10rem;
+.shape {
+  width: 50vw;
+  height: 30rem;
+  padding: 4rem;
+  /* background: linear-gradient(180deg, #31A9C1 60%, #DC571F 40%); */
+  background:  #31A9C1;
+  box-shadow: 0 10px 53px 0 rgb(72 49 212 / 5%);
+}
+.square {
+  width: 12rem;
+  height: 12rem;
+  background-color: #af0069;
   margin: 1rem;
-  background-color: #42b983;
+  border-radius: 20px;
+}
+.xyz-animate {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 </style>
