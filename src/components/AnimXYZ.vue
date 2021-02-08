@@ -27,19 +27,11 @@
       duration="auto"
     >
       <div class="shape" key="1" v-if="toggled">
-        <p class="xyz-nested nav-item">
-          Home
-        </p>
-        <p class="xyz-nested nav-item">
-         About
-        </p>
-        <p class="xyz-nested nav-item">
-         Contact
-        </p>
-
-        <!-- <p class="hero-text xyz-nested" xyz="duration-10 delay-2">
-          Curabitur blandit tempus porttitor. Morbi leo risus.
-        </p> -->
+        <div class="nav">
+          <p class="xyz-nested nav-item">Home</p>
+          <p class="xyz-nested nav-item">About</p>
+          <p class="xyz-nested nav-item">Contact</p>
+        </div>
       </div>
     </XyzTransitionGroup>
 
@@ -108,8 +100,8 @@ export default {
   data() {
     return {
       toggled: false,
-      animate: "",
       isAnimate: true,
+      animate: "",
       utilityLevel: "5",
     };
   },
@@ -125,8 +117,18 @@ export default {
 .item-flex {
   display: flex;
 }
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 3rem 0 0 3rem;
+}
 .nav-item {
   color: #fff;
+  margin: 0;
+  padding: 1rem 0;
+  font-size: 7rem !important;
+  font-family: sharpe, sans-serif;
 }
 .deactivated {
   transform: rotate(0deg);
@@ -147,7 +149,7 @@ export default {
   cursor: pointer;
   z-index: 22;
   position: absolute;
-  top: 2rem;
+  padding: 2rem;
 }
 .line {
   background-color: #000;
@@ -163,11 +165,11 @@ export default {
   display: none;
 }
 .shape {
-  width: 50vw;
-  height: 30rem;
-  padding: 4rem;
+  width: 100vw;
+  height: 100vh;
+  /* padding: 4rem; */
   /* background: linear-gradient(180deg, #31A9C1 60%, #DC571F 40%); */
-  background:  #31A9C1;
+  background: #31a9c1;
   box-shadow: 0 10px 53px 0 rgb(72 49 212 / 5%);
 }
 .square {
@@ -178,11 +180,8 @@ export default {
   border-radius: 20px;
 }
 .xyz-animate {
-  position: relative;
   text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: flex-end;
 }
 </style>
