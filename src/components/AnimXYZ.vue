@@ -28,9 +28,9 @@
     >
       <div class="shape" key="1" v-if="toggled">
         <div class="nav">
-          <p class="xyz-nested nav-item">Home</p>
-          <p class="xyz-nested nav-item">About</p>
-          <p class="xyz-nested nav-item">Contact</p>
+          <a class="xyz-nested nav-item">Home</a>
+          <a class="xyz-nested nav-item">About</a>
+          <a class="xyz-nested nav-item">Contact</a>
         </div>
       </div>
     </XyzTransitionGroup>
