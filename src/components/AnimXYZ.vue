@@ -1,7 +1,7 @@
 <template>
   <div class="xyz-animate">
-    <!-- <h1>Composable CSS Animation with AnimXYZ</h1> -->
-    <div class="harmburger-menu" @click="toggleMenu()">
+    <!-- <h1>Composable CSS Hover over to see effect</h1> -->
+    <!-- <div class="harmburger-menu" @click="toggleMenu()">
       <XyzTransitionGroup appear xyz="fade stagger-1 delay-5">
         <div
           class="line"
@@ -33,7 +33,7 @@
           <a class="xyz-nested nav-item">Contact</a>
         </div>
       </div>
-    </XyzTransitionGroup>
+    </XyzTransitionGroup> -->
 
     <!-- <XyzTransition appear duration="auto">
       <div class="page-wrap">
@@ -92,6 +92,94 @@
         <div class="square xyz-nested"></div>
       </div>
     </XyzTransition> -->
+
+    <XyzTransition
+      appear-visible
+      xyz="fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger"
+    >
+      <div class="card" key="1" v-if="!isHover2" @mouseenter="isHover2 = true">
+        <img
+          src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
+          alt="card image"
+          class="card-img"
+        />
+
+        <h2 class="xyz-nested">Hover over to see effect</h2>
+        <p class="xyz-nested">Animation with AnimXYZ</p>
+        <p class="xyz-nested">
+          AnimXYZ is a composable, performant and customizable CSS animation
+          toolkit powered by CSS variables.
+        </p>
+      </div>
+    </XyzTransition>
+
+    <XyzTransition
+      appear-visible
+      v-xyz="{
+        'fade up in-left in-rotate-left out-right out-rotate-right': !isHover1,
+      }"
+    >
+      <div class="card" v-if="!isHover1" @mouseenter="isHover1 = true">
+        <img
+          src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
+          alt="card image"
+          class="card-img"
+        />
+        <h2 class="xyz-nested">Hover over to see effect</h2>
+        <p>Animation with AnimXYZ</p>
+        <p>
+          AnimXYZ is a composable, performant and customizable CSS animation
+          toolkit powered by CSS variables.
+        </p>
+      </div>
+    </XyzTransition>
+
+
+    <XyzTransition
+      appear-visible
+      v-xyz="{ 'fade flip-up flip-left origin-top-right': !isHover3 }"
+    >
+      <div class="card" v-if="!isHover3" @mouseenter="isHover3 = true">
+        <img
+          src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
+          alt="card image"
+          class="card-img"
+        />
+
+        <h2 class="xyz-nested">Hover over to see effect</h2>
+        <p class="xyz-nested">Animation with AnimXYZ</p>
+        <p class="xyz-nested">
+          AnimXYZ is a composable, performant and customizable CSS animation
+          toolkit powered by CSS variables.
+        </p>
+      </div>
+    </XyzTransition>
+
+    <!-- <XyzTransition
+      appear-visible
+      v-xyz="{ 'small-100% origin-top-right': !isCondition }"
+    >
+      <div
+        class="square"
+        v-if="!isCondition"
+        @mouseenter="isCondition = true"
+      ></div>
+    </XyzTransition> -->
+    <!-- <div class="shape" ></div> -->
+
+    <!-- <XyzTransitionGroup
+        appear
+        xyz="fade small stagger ease-out-back"
+        duration="auto"
+      >
+        <div class="shape" key="1" v-if="toggled">
+          <div class="nav">
+            <a class="xyz-nested nav-item">Home</a>
+            <a class="xyz-nested nav-item">About</a>
+            <a class="xyz-nested nav-item">Contact</a>
+          </div>
+        </div>
+      </XyzTransitionGroup> -->
   </div>
 </template>
 
@@ -103,9 +191,17 @@ export default {
       isAnimate: true,
       animate: "",
       utilityLevel: "5",
+      isHover1: false,
+      isHover2: false,
+      isHover3: false,
+      isCondition: false,
     };
   },
   methods: {
+    getAttr() {
+      // this.$refs["anim"].$attrs["xyz"] = "fade rotate-right ease-out-back";
+      console.log(this.$refs["anim"].$attrs["xyz"]);
+    },
     toggleMenu() {
       this.toggled = !this.toggled;
     },
@@ -114,6 +210,21 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  width: 20rem;
+  height: 26rem;
+  padding: 1rem;
+  margin: 1rem;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  color: #2f3065;
+  cursor: pointer;
+}
+.card-img {
+  width: 100%;
+  border-radius: 20px;
+}
 .item-flex {
   display: flex;
 }
@@ -165,8 +276,8 @@ export default {
   display: none;
 }
 .shape {
-  width: 100vw;
-  height: 100vh;
+  width: 20vw;
+  height: 20vh;
   /* padding: 4rem; */
   /* background: linear-gradient(180deg, #31A9C1 60%, #DC571F 40%); */
   background: #31a9c1;
@@ -180,8 +291,10 @@ export default {
   border-radius: 20px;
 }
 .xyz-animate {
-  text-align: center;
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>
