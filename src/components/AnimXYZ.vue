@@ -97,9 +97,9 @@
       appear-visible
       xyz="fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger"
     >
-      <div class="card" key="1" v-if="!isHover2" @mouseenter="isHover2 = true">
+      <div class="card" key="1" v-if="!isHover" @mouseenter="isHover = true">
         <img
-          src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
+          src="https://cdn.dribbble.com/users/2417352/screenshots/15197452/media/8e61474be3aef19d7f058bf42db34e18.png"
           alt="card image"
           class="card-img"
         />
@@ -116,12 +116,12 @@
     <XyzTransition
       appear-visible
       v-xyz="{
-        'fade up in-left in-rotate-left out-right out-rotate-right': !isHover1,
+        'fade down-5 rotate-right-50% stagger': !isHover1,
       }"
     >
       <div class="card" v-if="!isHover1" @mouseenter="isHover1 = true">
         <img
-          src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
+          src="https://cdn.dribbble.com/users/254977/screenshots/15210695/media/c152bccd293ad0ec84e831db21262422.png"
           alt="card image"
           class="card-img"
         />
@@ -134,12 +134,11 @@
       </div>
     </XyzTransition>
 
-
     <XyzTransition
       appear-visible
-      v-xyz="{ 'fade flip-up flip-left origin-top-right': !isHover3 }"
+      v-xyz="{ 'fade flip-up flip-left origin-top-right': !isHover2 }"
     >
-      <div class="card" v-if="!isHover3" @mouseenter="isHover3 = true">
+      <div class="card" v-if="!isHover2" @mouseenter="isHover2 = true">
         <img
           src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
           alt="card image"
@@ -154,7 +153,26 @@
         </p>
       </div>
     </XyzTransition>
+  
+    <XyzTransition
+      appear-visible
+      v-xyz="{ 'fade front-3 flip-left-50% duration-4': !isHover3 }"
+    >
+      <div class="card" v-if="!isHover3" @mouseenter="isHover3 = true">
+        <img
+          src="https://cdn.dribbble.com/users/3958105/screenshots/15209937/media/10b648afb141f3448c3b05e980fc1f57.png"
+          alt="card image"
+          class="card-img"
+        />
 
+        <h2 class="xyz-nested">Hover over to see effect</h2>
+        <p class="xyz-nested">Animation with AnimXYZ</p>
+        <p class="xyz-nested">
+          AnimXYZ is a composable, performant and customizable CSS animation
+          toolkit powered by CSS variables.
+        </p>
+      </div>
+    </XyzTransition>
     <!-- <XyzTransition
       appear-visible
       v-xyz="{ 'small-100% origin-top-right': !isCondition }"
@@ -191,6 +209,7 @@ export default {
       isAnimate: true,
       animate: "",
       utilityLevel: "5",
+      isHover: false,
       isHover1: false,
       isHover2: false,
       isHover3: false,
@@ -211,10 +230,10 @@ export default {
 
 <style scoped>
 .card {
-  width: 20rem;
-  height: 26rem;
+  width: 18rem;
+  /* height: 100%; */
   padding: 1rem;
-  margin: 1rem;
+  margin: 2rem;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -296,5 +315,6 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 2rem;
 }
 </style>
