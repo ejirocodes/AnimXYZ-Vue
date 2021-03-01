@@ -231,7 +231,6 @@ export default {
 <style scoped>
 .card {
   width: 18rem;
-  /* height: 100%; */
   padding: 1rem;
   margin: 2rem;
   background: #fff;
