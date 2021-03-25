@@ -201,14 +201,19 @@
 
     <button
       data-v-689fae14=""
-      class="modal-toggle example-button mt-l"
+      class="modal-toggle example-button"
       @click="isDialog = !isDialog"
+      :aria-describedby="modalStatus"
     >
-      Show Modal
+      {{ modalStatus }}
     </button>
 
     <XyzTransition duration="auto" xyz="fade out-delay-5">
-      <div class="dialog_overlay" v-if="isDialog">
+      <div
+        class="dialog_overlay"
+        v-if="isDialog"
+        @keydown.esc="isDialog = false"
+      >
         <section
           role="dialog"
           id="dialog1"
@@ -231,6 +236,7 @@
               xyz="fade small in-delay-7"
               class="xyz-nested"
               @click="isDialog = false"
+              title="Close"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -245,7 +251,7 @@
               </svg>
             </button>
           </div>
-          <div class="dialog_body xyz-nested" xyz="up-100% in-delay-3" >
+          <div class="dialog_body xyz-nested" xyz="up-100% in-delay-3">
             <div class="dialog_body--top flex justify_center align_center">
               <img
                 src="../assets/slack.png"
@@ -262,12 +268,18 @@
             <p><span class="bold">929</span> users are registered so far.</p>
           </div>
           <form class="dialog_form" autocomplete>
+            <label for="email"
+              ><span class="sr-only">Enter your email</span></label
+            >
             <input
+              id="email"
               type="email"
               placeholder="johndoe@email.com"
+              autocomplete="email"
+              aria-describedby="email"
               class="dialog_input"
               required
-              autofocus
+              ref="email"
             />
             <button type="submit" class="dialog_invite_btn">
               Get my invite
@@ -275,10 +287,14 @@
             <p>Already joined?</p>
             <button
               type="button"
-              class="dialog_slack_btn flex align_center justify_center xyz-nested "
+              aria-describedby="open_slack"
+              class="dialog_slack_btn flex align_center justify_center xyz-nested"
               xyz="fade in-right in-delay-7"
+              id="open_slack"
             >
-              <span><img src="../assets/slack.png" alt="" role="icon" /></span>
+              <span
+                ><img src="../assets/slack.png" alt="slack logo" role="icon"
+              /></span>
               Open Slack
             </button>
           </form>
@@ -333,19 +349,42 @@ export default {
       isDialog: false,
     };
   },
+  computed: {
+    modalStatus() {
+      return !this.isDialog ? "Open Modal" : "Close Modal";
+    },
+  },
+  watch: {
+    isDialog(val) {
+      setTimeout(() => {
+        val && this.$refs.email.focus();
+      }, 1000);
+    },
+  },
   methods: {
     getAttr() {
       // this.$refs["anim"].$attrs["xyz"] = "fade rotate-right ease-out-back";
       console.log(this.$refs["anim"].$attrs["xyz"]);
     },
+    closeModalOnEscapeKey() {
+      // @keydown.esc="something_in_your_methods"
+    },
     toggleMenu() {
       this.toggled = !this.toggled;
     },
   },
+  mounted() {},
 };
 </script>
 
 <style scoped>
+.sr-only {
+  position: absolute;
+  left: -99999px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
 .flex {
   display: flex;
 }
@@ -438,6 +477,7 @@ export default {
   margin: 0.6rem 0 2rem;
   border-radius: 0.2rem;
   border: none;
+  font-size: 1.2rem;
 }
 .dialog_invite_btn:focus {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
@@ -482,8 +522,6 @@ button {
 }
 
 .example-button {
-  background-color: var(--primary-800);
-  color: var(--primary-100);
   border-radius: 0.375rem;
   display: flex;
   align-items: center;
@@ -492,6 +530,7 @@ button {
   padding: 0.5rem 1rem;
   transition: 0.2s ease-in-out;
   transition-property: background-color, box-shadow, color;
+  margin-bottom: 3rem;
 }
 .example-button:focus {
   box-shadow: 0 0 0 2px #56ccf2;
