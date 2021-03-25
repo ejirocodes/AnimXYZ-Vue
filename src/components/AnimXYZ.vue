@@ -302,34 +302,6 @@
       </div>
     </XyzTransition>
 
-    <!-- <XyzTransition duration="auto" xyz="fade out-delay-5">
-      <div class="modal-overlay" v-if="isDialog" @click="isDialog = false">
-        <div
-          class="modal xyz-nested"
-          xyz="fade short-100% delay-3 ease-out-back"
-          @click.stop
-        >
-          <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
-            <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-            <button
-              xyz="fade small in-delay-7"
-              class="modal-close xyz-nested"
-              @click="isDialog = false"
-            ></button>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
-            <button
-              class="modal-button xyz-nested"
-              xyz="fade in-right in-delay-7"
-              @click="isDialog = false"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </XyzTransition> -->
   </div>
 </template>
 
@@ -358,16 +330,13 @@ export default {
     isDialog(val) {
       setTimeout(() => {
         val && this.$refs.email.focus();
-      }, 1000);
+      }, 500);
     },
   },
   methods: {
     getAttr() {
       // this.$refs["anim"].$attrs["xyz"] = "fade rotate-right ease-out-back";
       console.log(this.$refs["anim"].$attrs["xyz"]);
-    },
-    closeModalOnEscapeKey() {
-      // @keydown.esc="something_in_your_methods"
     },
     toggleMenu() {
       this.toggled = !this.toggled;
@@ -535,73 +504,6 @@ button {
 .example-button:focus {
   box-shadow: 0 0 0 2px #56ccf2;
 }
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  z-index: 99999999;
-}
-.modal {
-  display: flex;
-  flex-direction: column;
-  color: #56ccf2;
-  width: 100%;
-  max-width: 32rem;
-  background-color: var(--primary-900);
-  border: 4px solid #56ccf2;
-  border-radius: 0.75rem;
-  height: 24rem;
-  margin: auto;
-  overflow: hidden;
-}
-.modal-header {
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 4px solid #56ccf2;
-}
-.modal-header h1 {
-  color: #56ccf2;
-  font-weight: 600;
-}
-.modal-close {
-  --icon-color: #56ccf2;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 2px #56ccf2;
-  color: #56ccf2;
-  transition: 0.2s ease-in-out;
-  transition-property: background-color, box-shadow;
-}
-.modal-body {
-  flex-grow: 1;
-}
-.modal-footer {
-  border-top: 4px solid #56ccf2;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-.modal-button {
-  background-color: #56ccf2;
-  border-radius: 0.25rem;
-  color: var(--primary-900);
-  padding: 0 1rem;
-  height: 2rem;
-  font-weight: 700;
-}
-
 .card {
   width: 18rem;
   padding: 1rem;
