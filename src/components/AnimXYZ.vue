@@ -235,8 +235,13 @@
         </div>
         <p><span class="bold">929</span> users are registered so far.</p>
       </div>
-      <form class="dialog_form">
-        <input placeholder="johndoe@email.com" class="dialog_input" autofocus/>
+      <form class="dialog_form" autocomplete>
+        <input
+          type="email"
+          placeholder="johndoe@email.com"
+          class="dialog_input"
+          autofocus
+        />
         <button type="button" class="dialog_invite_btn">Get my invite</button>
         <p>Already joined?</p>
         <button
@@ -331,13 +336,15 @@ export default {
 }
 .dialog {
   text-align: center;
-  background-color: #F7FAFD;
+  background-color: #f7fafd;
   padding: 2.4rem;
   border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  border: 1px solid #5fb2844b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .dialog_label {
+  font-size: 1.2rem;
   font-weight: 600;
 }
 .dialog_top {
@@ -348,8 +355,14 @@ export default {
   height: 2rem;
   width: 2rem;
 }
+.dialog_top button:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+}
+.dialog_body {
+  margin-bottom: 2.4rem;
+}
 .dialog_body--top {
-  margin-top: 3rem;
+  margin: 3rem 0 2rem;
 }
 .slack_logo,
 .discord_logo {
@@ -357,11 +370,11 @@ export default {
   height: 6rem;
   object-fit: cover;
   border-radius: 50%;
-  padding: 0 2.5rem;
+  margin: 0 2.2rem;
 }
 .plus {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 .bold {
   font-weight: 600;
@@ -370,7 +383,7 @@ export default {
   width: 100%;
   height: 3rem;
   padding-left: 1rem;
-  border-radius: 0rem;
+  border-radius: 0.2rem;
   box-sizing: border-box;
 }
 .dialog_invite_btn {
@@ -391,6 +404,8 @@ export default {
   background: #283341;
   color: #fff;
   margin: 0.6rem 0 2rem;
+  border-radius: 0.2rem;
+  border: none;
 }
 .dialog_invite_btn:focus {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
@@ -406,14 +421,31 @@ export default {
 .dialog_slack_btn {
   height: 3rem;
   width: 100%;
+  background-color: #fff;
+  color: #283341;
+  font-size: 1.2rem;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 0.2rem;
+}
+.dialog_slack_btn:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+  background: #f7f7f7;
+}
+
+.dialog_slack_btn:hover {
+  background: #f7f7f7;
+}
+.dialog_slack_btn:active {
+  background: #e9e9e9;
 }
 .dialog_slack_btn img {
   width: 1rem;
   margin-right: 1rem;
 }
 button {
-  /* outline: none;
-  border: 0; */
+  outline: none;
   cursor: pointer;
 }
 
