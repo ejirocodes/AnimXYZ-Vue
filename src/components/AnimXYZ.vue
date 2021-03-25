@@ -198,75 +198,78 @@
           </div>
         </div>
       </XyzTransitionGroup> -->
-    <section
-      role="dialog"
-      id="dialog1"
-      aria-labelledby="dialog1_label"
-      aria-modal="true"
-      class="hidden dialog"
-    >
-      <div class="dialog_top flex">
-        <header id="dialog1_label" class="dialog_label">
-          Join our community on Slack
-        </header>
-        <button type="button" aria-label="Close">
-          <svg
-            viewBox="0 0 24 24"
-            focusable="false"
-            class="chakra-icon css-onkibi"
-            aria-hidden="true"
-          >
-            <path
-              fill="currentColor"
-              d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-      <div class="dialog_body">
-        <div class="dialog_body--top flex justify_center align_center">
-          <img src="../assets/slack.png" alt="slack logo" class="slack_logo" />
-          <img src="../assets/plus.png" alt="plus" class="plus" />
-          <img
-            src="../assets/discord.png"
-            alt="discord logo"
-            class="discord_logo"
-          />
+    <XyzTransition duration="auto" xyz="fade out-delay-5">
+      <section
+        role="dialog"
+        id="dialog1"
+        aria-labelledby="dialog1_label"
+        aria-modal="true"
+        class="hidden dialog"
+        v-if="isDialog"
+      >
+        <div class="dialog_top flex">
+          <header id="dialog1_label" class="dialog_label">
+            Join our community on Slack
+          </header>
+          <button type="button" aria-label="Close"  @click="isDialog = false">
+            <svg
+              viewBox="0 0 24 24"
+              focusable="false"
+              class="chakra-icon css-onkibi"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+              ></path>
+            </svg>
+          </button>
         </div>
-        <p><span class="bold">929</span> users are registered so far.</p>
-      </div>
-      <form class="dialog_form" autocomplete>
-        <input
-          type="email"
-          placeholder="johndoe@email.com"
-          class="dialog_input"
-          autofocus
-        />
-        <button type="button" class="dialog_invite_btn">Get my invite</button>
-        <p>Already joined?</p>
-        <button
-          type="button"
-          class="dialog_slack_btn flex align_center justify_center"
-        >
-          <span><img src="../assets/slack.png" alt="" role="icon" /></span> Open
-          Slack
-        </button>
-      </form>
-    </section>
+        <div class="dialog_body">
+          <div class="dialog_body--top flex justify_center align_center">
+            <img
+              src="../assets/slack.png"
+              alt="slack logo"
+              class="slack_logo"
+            />
+            <img src="../assets/plus.png" alt="plus" class="plus" />
+            <img
+              src="../assets/discord.png"
+              alt="discord logo"
+              class="discord_logo"
+            />
+          </div>
+          <p><span class="bold">929</span> users are registered so far.</p>
+        </div>
+        <form class="dialog_form" autocomplete>
+          <input
+            type="email"
+            placeholder="johndoe@email.com"
+            class="dialog_input"
+            autofocus
+          />
+          <button type="button" class="dialog_invite_btn">Get my invite</button>
+          <p>Already joined?</p>
+          <button
+            type="button"
+            class="dialog_slack_btn flex align_center justify_center"
+          >
+            <span><img src="../assets/slack.png" alt="" role="icon" /></span>
+            Open Slack
+          </button>
+        </form>
+      </section>
+    </XyzTransition>
 
-    <!-- <button
+    <button
       data-v-689fae14=""
       class="modal-toggle example-button mt-l"
-      @click="isModalOpen = !isModalOpen"
+      @click="isDialog = !isDialog"
     >
       Show Modal
-    </button> -->
-    <XyzTransition duration="auto" xyz="fade out-delay-5">
-      <div
-        class="modal-overlay"
-        v-if="isModalOpen"
-        @click="isModalOpen = false"
-      >
+    </button>
+    <!-- <XyzTransition duration="auto" xyz="fade out-delay-5">
+      <div class="modal-overlay" v-if="isDialog" @click="isDialog = false">
         <div
           class="modal xyz-nested"
           xyz="fade short-100% delay-3 ease-out-back"
@@ -277,7 +280,7 @@
             <button
               xyz="fade small in-delay-7"
               class="modal-close xyz-nested"
-              @click="isModalOpen = false"
+              @click="isDialog = false"
             ></button>
           </div>
           <div class="modal-body"></div>
@@ -285,14 +288,14 @@
             <button
               class="modal-button xyz-nested"
               xyz="fade in-right in-delay-7"
-              @click="isModalOpen = false"
+              @click="isDialog = false"
             >
               Close
             </button>
           </div>
         </div>
       </div>
-    </XyzTransition>
+    </XyzTransition> -->
   </div>
 </template>
 
@@ -309,7 +312,7 @@ export default {
       isHover2: false,
       isHover3: false,
       isCondition: false,
-      isModalOpen: false,
+      isDialog: false,
     };
   },
   methods: {
