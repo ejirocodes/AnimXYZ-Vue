@@ -208,11 +208,11 @@
       {{ modalStatus }}
     </button>
 
-    <XyzTransition duration="auto" xyz="fade out-delay-5">
+    <XyzTransition duration="auto" xyz="fade out-delay-5" @keydown.esc="isDialog = false">
       <div
         class="dialog_overlay"
         v-if="isDialog"
-        @keydown.esc="isDialog = false"
+        
       >
         <section
           role="dialog"
