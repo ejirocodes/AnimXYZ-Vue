@@ -93,7 +93,7 @@
       </div>
     </XyzTransition> -->
 
-    <XyzTransition
+    <!-- <XyzTransition
       appear-visible
       xyz="fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger"
     >
@@ -153,7 +153,7 @@
         </p>
       </div>
     </XyzTransition>
-  
+
     <XyzTransition
       appear-visible
       v-xyz="{ 'fade front-3 flip-left-50% duration-4': !isHover3 }"
@@ -172,7 +172,7 @@
           toolkit powered by CSS variables.
         </p>
       </div>
-    </XyzTransition>
+    </XyzTransition> -->
     <!-- <XyzTransition
       appear-visible
       v-xyz="{ 'small-100% origin-top-right': !isCondition }"
@@ -198,6 +198,96 @@
           </div>
         </div>
       </XyzTransitionGroup> -->
+    <section
+      role="dialog"
+      id="dialog1"
+      aria-labelledby="dialog1_label"
+      aria-modal="true"
+      class="hidden dialog"
+    >
+      <div class="dialog_top flex">
+        <header id="dialog1_label" class="dialog_label">
+          Join our community on Slack
+        </header>
+        <button type="button" aria-label="Close">
+          <svg
+            viewBox="0 0 24 24"
+            focusable="false"
+            class="chakra-icon css-onkibi"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="dialog_body">
+        <div class="dialog_body--top flex justify_center align_center">
+          <img src="../assets/slack.png" alt="slack logo" class="slack_logo" />
+          <img src="../assets/plus.png" alt="plus" class="plus" />
+          <img
+            src="../assets/discord.png"
+            alt="discord logo"
+            class="discord_logo"
+          />
+        </div>
+        <p><span class="bold">929</span> users are registered so far.</p>
+      </div>
+      <form class="dialog_form">
+        <input placeholder="johndoe@email.com" class="dialog_input" autofocus/>
+        <button type="button" class="dialog_invite_btn">Get my invite</button>
+        <p>Already joined?</p>
+        <button
+          type="button"
+          class="dialog_slack_btn flex align_center justify_center"
+        >
+          <span><img src="../assets/slack.png" alt="" role="icon" /></span> Open
+          Slack
+        </button>
+      </form>
+    </section>
+
+    <!-- <button
+      data-v-689fae14=""
+      class="modal-toggle example-button mt-l"
+      @click="isModalOpen = !isModalOpen"
+    >
+      Show Modal
+    </button> -->
+    <XyzTransition duration="auto" xyz="fade out-delay-5">
+      <div
+        class="modal-overlay"
+        v-if="isModalOpen"
+        @click="isModalOpen = false"
+      >
+        <div
+          class="modal xyz-nested"
+          xyz="fade short-100% delay-3 ease-out-back"
+          @click.stop
+        >
+          <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
+            <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
+            <button
+              xyz="fade small in-delay-7"
+              class="modal-close xyz-nested"
+              @click="isModalOpen = false"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
+            <button
+              class="modal-button xyz-nested"
+              xyz="fade in-right in-delay-7"
+              @click="isModalOpen = false"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </XyzTransition>
   </div>
 </template>
 
@@ -214,6 +304,7 @@ export default {
       isHover2: false,
       isHover3: false,
       isCondition: false,
+      isModalOpen: false,
     };
   },
   methods: {
@@ -229,6 +320,185 @@ export default {
 </script>
 
 <style scoped>
+.flex {
+  display: flex;
+}
+.align_center {
+  align-items: center;
+}
+.justify_center {
+  justify-content: center;
+}
+.dialog {
+  text-align: center;
+  background-color: #F7FAFD;
+  padding: 2.4rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.dialog_label {
+  font-weight: 600;
+}
+.dialog_top {
+  align-items: center;
+  justify-content: space-between;
+}
+.dialog_top button {
+  height: 2rem;
+  width: 2rem;
+}
+.dialog_body--top {
+  margin-top: 3rem;
+}
+.slack_logo,
+.discord_logo {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 0 2.5rem;
+}
+.plus {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.bold {
+  font-weight: 600;
+}
+.dialog_input {
+  width: 100%;
+  height: 3rem;
+  padding-left: 1rem;
+  border-radius: 0rem;
+  box-sizing: border-box;
+}
+.dialog_invite_btn {
+  appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  transition: all 250ms ease 0s;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+  width: 100%;
+  height: 3rem;
+  line-height: 1.2;
+  background: #283341;
+  color: #fff;
+  margin: 0.6rem 0 2rem;
+}
+.dialog_invite_btn:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+  background: #1e2733;
+}
+
+.dialog_invite_btn:hover {
+  background: #1e2733;
+}
+.dialog_invite_btn:active {
+  background: #161c24;
+}
+.dialog_slack_btn {
+  height: 3rem;
+  width: 100%;
+}
+.dialog_slack_btn img {
+  width: 1rem;
+  margin-right: 1rem;
+}
+button {
+  /* outline: none;
+  border: 0; */
+  cursor: pointer;
+}
+
+.example-button {
+  background-color: var(--primary-800);
+  color: var(--primary-100);
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  padding: 0.5rem 1rem;
+  transition: 0.2s ease-in-out;
+  transition-property: background-color, box-shadow, color;
+}
+.example-button:focus {
+  box-shadow: 0 0 0 2px #56ccf2;
+}
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 99999999;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  color: #56ccf2;
+  width: 100%;
+  max-width: 32rem;
+  background-color: var(--primary-900);
+  border: 4px solid #56ccf2;
+  border-radius: 0.75rem;
+  height: 24rem;
+  margin: auto;
+  overflow: hidden;
+}
+.modal-header {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px solid #56ccf2;
+}
+.modal-header h1 {
+  color: #56ccf2;
+  font-weight: 600;
+}
+.modal-close {
+  --icon-color: #56ccf2;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px #56ccf2;
+  color: #56ccf2;
+  transition: 0.2s ease-in-out;
+  transition-property: background-color, box-shadow;
+}
+.modal-body {
+  flex-grow: 1;
+}
+.modal-footer {
+  border-top: 4px solid #56ccf2;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.modal-button {
+  background-color: #56ccf2;
+  border-radius: 0.25rem;
+  color: var(--primary-900);
+  padding: 0 1rem;
+  height: 2rem;
+  font-weight: 700;
+}
+
 .card {
   width: 18rem;
   padding: 1rem;
@@ -313,7 +583,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 300vh; */
   padding: 2rem;
 }
 </style>

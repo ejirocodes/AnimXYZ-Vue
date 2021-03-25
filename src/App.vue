@@ -21,6 +21,7 @@ export default {
   font-family: sharpe;
   src: url("./assets/Sharpe.ttf");
 }
+
 body {
   margin: 0;
 }
