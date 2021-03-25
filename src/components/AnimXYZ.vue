@@ -198,68 +198,6 @@
           </div>
         </div>
       </XyzTransitionGroup> -->
-    <XyzTransition duration="auto" xyz="fade out-delay-5">
-      <section
-        role="dialog"
-        id="dialog1"
-        aria-labelledby="dialog1_label"
-        aria-modal="true"
-        class="hidden dialog"
-        v-if="isDialog"
-      >
-        <div class="dialog_top flex">
-          <header id="dialog1_label" class="dialog_label">
-            Join our community on Slack
-          </header>
-          <button type="button" aria-label="Close"  @click="isDialog = false">
-            <svg
-              viewBox="0 0 24 24"
-              focusable="false"
-              class="chakra-icon css-onkibi"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        <div class="dialog_body">
-          <div class="dialog_body--top flex justify_center align_center">
-            <img
-              src="../assets/slack.png"
-              alt="slack logo"
-              class="slack_logo"
-            />
-            <img src="../assets/plus.png" alt="plus" class="plus" />
-            <img
-              src="../assets/discord.png"
-              alt="discord logo"
-              class="discord_logo"
-            />
-          </div>
-          <p><span class="bold">929</span> users are registered so far.</p>
-        </div>
-        <form class="dialog_form" autocomplete>
-          <input
-            type="email"
-            placeholder="johndoe@email.com"
-            class="dialog_input"
-            autofocus
-          />
-          <button type="button" class="dialog_invite_btn">Get my invite</button>
-          <p>Already joined?</p>
-          <button
-            type="button"
-            class="dialog_slack_btn flex align_center justify_center"
-          >
-            <span><img src="../assets/slack.png" alt="" role="icon" /></span>
-            Open Slack
-          </button>
-        </form>
-      </section>
-    </XyzTransition>
 
     <button
       data-v-689fae14=""
@@ -268,6 +206,86 @@
     >
       Show Modal
     </button>
+
+    <XyzTransition duration="auto" xyz="fade out-delay-5">
+      <div class="dialog_overlay" v-if="isDialog">
+        <section
+          role="dialog"
+          id="dialog1"
+          aria-labelledby="dialog1_label"
+          aria-modal="true"
+          class="hidden dialog xyz-nested"
+          xyz="fade small stagger ease-out-back"
+        >
+          <div class="dialog_top flex xyz-nested" xyz="up-100% in-delay-3">
+            <header
+              id="dialog1_label"
+              class="dialog_label xyz-nested"
+              xyz="fade right in-delay-7"
+            >
+              Join our community on Slack
+            </header>
+            <button
+              type="button"
+              aria-label="Close"
+              xyz="fade small in-delay-7"
+              class="xyz-nested"
+              @click="isDialog = false"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                focusable="false"
+                class="chakra-icon css-onkibi"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="dialog_body xyz-nested" xyz="up-100% in-delay-3" >
+            <div class="dialog_body--top flex justify_center align_center">
+              <img
+                src="../assets/slack.png"
+                alt="slack logo"
+                class="slack_logo"
+              />
+              <img src="../assets/plus.png" alt="plus" class="plus" />
+              <img
+                src="../assets/discord.png"
+                alt="discord logo"
+                class="discord_logo"
+              />
+            </div>
+            <p><span class="bold">929</span> users are registered so far.</p>
+          </div>
+          <form class="dialog_form" autocomplete>
+            <input
+              type="email"
+              placeholder="johndoe@email.com"
+              class="dialog_input"
+              required
+              autofocus
+            />
+            <button type="submit" class="dialog_invite_btn">
+              Get my invite
+            </button>
+            <p>Already joined?</p>
+            <button
+              type="button"
+              class="dialog_slack_btn flex align_center justify_center xyz-nested "
+              xyz="fade in-right in-delay-7"
+            >
+              <span><img src="../assets/slack.png" alt="" role="icon" /></span>
+              Open Slack
+            </button>
+          </form>
+        </section>
+      </div>
+    </XyzTransition>
+
     <!-- <XyzTransition duration="auto" xyz="fade out-delay-5">
       <div class="modal-overlay" v-if="isDialog" @click="isDialog = false">
         <div
@@ -350,6 +368,17 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
 }
+/* .dialog_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 99999999;
+} */
 .dialog_top {
   align-items: center;
   justify-content: space-between;
@@ -618,7 +647,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  /* height: 300vh; */
   padding: 2rem;
+  flex-direction: column;
 }
 </style>
