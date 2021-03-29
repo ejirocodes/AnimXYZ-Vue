@@ -203,17 +203,19 @@
       data-v-689fae14=""
       class="modal-toggle example-button"
       @click="isDialog = !isDialog"
+      autofocus
+      ref="dialogBtn"
       :aria-describedby="modalStatus"
     >
       {{ modalStatus }}
     </button>
 
-    <XyzTransition duration="auto" xyz="fade out-delay-5" @keydown.esc="isDialog = false">
-      <div
-        class="dialog_overlay"
-        v-if="isDialog"
-        
-      >
+    <XyzTransition
+      duration="auto"
+      xyz="fade out-delay-5"
+      @keydown.esc="isDialog = false"
+    >
+      <div class="dialog_overlay" v-if="isDialog">
         <section
           role="dialog"
           id="dialog1"
@@ -301,7 +303,6 @@
         </section>
       </div>
     </XyzTransition>
-
   </div>
 </template>
 
@@ -328,6 +329,7 @@ export default {
   },
   watch: {
     isDialog(val) {
+      !val && this.$refs.dialogBtn.focus();
       setTimeout(() => {
         val && this.$refs.email.focus();
       }, 500);
@@ -376,17 +378,18 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
 }
-/* .dialog_overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 2rem;
+.dialog_overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 1400;
   display: flex;
+  align-items: center;
   justify-content: center;
-  z-index: 99999999;
-} */
+}
 .dialog_top {
   align-items: center;
   justify-content: space-between;
