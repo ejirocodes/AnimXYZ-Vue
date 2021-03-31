@@ -4,7 +4,7 @@
 
     <button
       data-v-689fae14=""
-      class="modal-toggle example-button"
+      class="modal-toggle modal-btn-main"
       @click="isModal = !isModal"
       autofocus
       ref="modalBtn"
@@ -18,19 +18,19 @@
       xyz="fade out-delay-5"
       @keydown.esc="isModal = false"
     >
-      <div class="dialog_overlay" v-if="isModal">
+      <div class="modal_overlay" v-if="isModal">
         <section
-          role="dialog"
-          id="dialog1"
-          aria-labelledby="dialog1_label"
+          role="modal"
+          id="modal1"
+          aria-labelledby="modal1_label"
           aria-modal="true"
-          class="hidden dialog xyz-nested"
+          class="hidden modal xyz-nested"
           xyz="fade small stagger ease-out-back"
         >
-          <div class="dialog_top flex xyz-nested" xyz="up-100% in-delay-3">
+          <div class="modal_top flex xyz-nested" xyz="up-100% in-delay-3">
             <header
-              id="dialog1_label"
-              class="dialog_label xyz-nested"
+              id="modal1_label"
+              class="modal_label xyz-nested"
               xyz="fade right in-delay-7"
             >
               Join our community on Slack
@@ -51,8 +51,8 @@
               </svg>
             </button>
           </div>
-          <div class="dialog_body xyz-nested" xyz="up-100% in-delay-3">
-            <div class="dialog_body--top flex justify_center align_center">
+          <div class="modal_body xyz-nested" xyz="up-100% in-delay-3">
+            <div class="modal_body--top flex justify_center align_center">
               <img
                 src="../assets/slack.png"
                 alt="slack logo"
@@ -67,7 +67,7 @@
             </div>
             <p><span class="bold">929</span> users are registered so far.</p>
           </div>
-          <form class="dialog_form" autocomplete>
+          <form class="modal_form" autocomplete>
             <label for="email"
               ><span class="sr-only">Enter your email</span></label
             >
@@ -77,18 +77,18 @@
               placeholder="johndoe@email.com"
               autocomplete="email"
               aria-describedby="email"
-              class="dialog_input"
+              class="modal_input"
               required
               ref="email"
             />
-            <button type="submit" class="dialog_invite_btn">
+            <button type="submit" class="modal_invite_btn">
               Get my invite
             </button>
             <p>Already joined?</p>
             <button
               type="button"
               aria-describedby="open_slack"
-              class="dialog_slack_btn flex align_center justify_center xyz-nested"
+              class="modal_slack_btn flex align_center justify_center xyz-nested"
               xyz="fade in-right in-delay-7"
               id="open_slack"
             >
@@ -144,7 +144,7 @@ export default {
 .justify_center {
   justify-content: center;
 }
-.dialog {
+.modal {
   text-align: center;
   background-color: #f7fafd;
   padding: 2.4rem;
@@ -153,11 +153,11 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.dialog_label {
+.modal_label {
   font-size: 1.2rem;
   font-weight: 600;
 }
-.dialog_overlay {
+.modal_overlay {
   position: fixed;
   left: 0px;
   top: 0px;
@@ -169,21 +169,21 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.dialog_top {
+.modal_top {
   align-items: center;
   justify-content: space-between;
 }
-.dialog_top button {
+.modal_top button {
   height: 2rem;
   width: 2rem;
 }
-.dialog_top button:focus {
+.modal_top button:focus {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
-.dialog_body {
+.modal_body {
   margin-bottom: 2.4rem;
 }
-.dialog_body--top {
+.modal_body--top {
   margin: 3rem 0 2rem;
 }
 .slack_logo,
@@ -201,14 +201,14 @@ export default {
 .bold {
   font-weight: 600;
 }
-.dialog_input {
+.modal_input {
   width: 100%;
   height: 3rem;
   padding-left: 1rem;
   border-radius: 0.2rem;
   box-sizing: border-box;
 }
-.dialog_invite_btn {
+.modal_invite_btn {
   appearance: none;
   -webkit-box-align: center;
   align-items: center;
@@ -230,18 +230,18 @@ export default {
   border: none;
   font-size: 1.2rem;
 }
-.dialog_invite_btn:focus {
+.modal_invite_btn:focus {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
   background: #1e2733;
 }
 
-.dialog_invite_btn:hover {
+.modal_invite_btn:hover {
   background: #1e2733;
 }
-.dialog_invite_btn:active {
+.modal_invite_btn:active {
   background: #161c24;
 }
-.dialog_slack_btn {
+.modal_slack_btn {
   height: 3rem;
   width: 100%;
   background-color: #fff;
@@ -252,18 +252,18 @@ export default {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border-radius: 0.2rem;
 }
-.dialog_slack_btn:focus {
+.modal_slack_btn:focus {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
   background: #f7f7f7;
 }
 
-.dialog_slack_btn:hover {
+.modal_slack_btn:hover {
   background: #f7f7f7;
 }
-.dialog_slack_btn:active {
+.modal_slack_btn:active {
   background: #e9e9e9;
 }
-.dialog_slack_btn img {
+.modal_slack_btn img {
   width: 1rem;
   margin-right: 1rem;
 }
@@ -272,7 +272,7 @@ button {
   cursor: pointer;
 }
 
-.example-button {
+.modal-btn-main {
   border-radius: 0.375rem;
   display: flex;
   align-items: center;
@@ -283,87 +283,8 @@ button {
   transition-property: background-color, box-shadow, color;
   margin-bottom: 3rem;
 }
-.example-button:focus {
+.modal-btn-main:focus {
   box-shadow: 0 0 0 2px #56ccf2;
-}
-.card {
-  width: 18rem;
-  padding: 1rem;
-  margin: 2rem;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  color: #2f3065;
-  cursor: pointer;
-}
-.card-img {
-  width: 100%;
-  border-radius: 20px;
-}
-.item-flex {
-  display: flex;
-}
-.nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 3rem 0 0 3rem;
-}
-.nav-item {
-  color: #fff;
-  margin: 0;
-  padding: 1rem 0;
-  font-size: 7rem !important;
-  font-family: sharpe, sans-serif;
-}
-.deactivated {
-  transform: rotate(0deg);
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.top {
-  background-color: #fff !important;
-  transition: all 0.2s ease-in-out;
-  transform: rotate(45deg);
-}
-.bottom {
-  background-color: #fff !important;
-  transition: all 0.2s ease-in-out;
-  transform: rotate(-45deg);
-}
-
-.harmburger-menu {
-  cursor: pointer;
-  z-index: 22;
-  position: absolute;
-  padding: 2rem;
-}
-.line {
-  background-color: #000;
-  width: 50px;
-  height: 2px;
-}
-.line:nth-of-type(2) {
-  margin: 5px 0;
-}
-.active {
-  transition: all 0.2s ease-in-out;
-  opacity: 0;
-  display: none;
-}
-.shape {
-  width: 20vw;
-  height: 20vh;
-  /* padding: 4rem; */
-  /* background: linear-gradient(180deg, #31A9C1 60%, #DC571F 40%); */
-  background: #31a9c1;
-  box-shadow: 0 10px 53px 0 rgb(72 49 212 / 5%);
-}
-.square {
-  width: 12rem;
-  height: 12rem;
-  background-color: #af0069;
-  margin: 1rem;
-  border-radius: 20px;
 }
 .xyz-animate {
   display: flex;
