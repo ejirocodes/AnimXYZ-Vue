@@ -1,210 +1,13 @@
 <template>
   <div class="xyz-animate">
-    <!-- <h1>Composable CSS Hover over to see effect</h1> -->
-    <!-- <div class="harmburger-menu" @click="toggleMenu()">
-      <XyzTransitionGroup appear xyz="fade stagger-1 delay-5">
-        <div
-          class="line"
-          key="1"
-          :class="{ top: toggled, deactivated: !toggled }"
-        ></div>
-        <div
-          class="line middle"
-          key="2"
-          :class="{ active: toggled, deactivated: !toggled }"
-        ></div>
-        <div
-          class="line"
-          key="3"
-          :class="{ bottom: toggled, deactivated: !toggled }"
-        ></div>
-      </XyzTransitionGroup>
-    </div>
-
-    <XyzTransitionGroup
-      appear
-      xyz="fade small stagger ease-out-back"
-      duration="auto"
-    >
-      <div class="shape" key="1" v-if="toggled">
-        <div class="nav">
-          <a class="xyz-nested nav-item">Home</a>
-          <a class="xyz-nested nav-item">About</a>
-          <a class="xyz-nested nav-item">Contact</a>
-        </div>
-      </div>
-    </XyzTransitionGroup> -->
-
-    <!-- <XyzTransition appear duration="auto">
-      <div class="page-wrap">
-        <div class="page-hero" xyz="fade small stagger ease-out-back">
-          <div class="hero-logo xyz-nested"></div>
-          <p class="hero-text xyz-nested">
-            Curabitur blandit tempus porttitor. Morbi leo risus.
-          </p>
-        </div>
-        <div
-          class="page-features"
-          xyz="fade flip-down stagger duration-10 delay-2 ease-out-back"
-        >
-          <div class="feature-item xyz-nested"></div>
-          <div class="feature-item xyz-nested"></div>
-          <div class="feature-item xyz-nested"></div>
-        </div>
-        <div class="page-section" xyz="fade small stagger delay-4 ease-in-out">
-          <div class="section-left" xyz="fade left stagger">
-            <div class="section-item xyz-nested"></div>
-            <div class="section-item xyz-nested"></div>
-            <div class="section-item xyz-nested"></div>
-          </div>
-          <div class="section-right xyz-nested" xyz="fade big delay-10"></div>
-        </div>
-        <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
-          <div
-            class="footer-logo xyz-nested"
-            xyz="fade left ease-in-out delay-10"
-          ></div>
-          <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
-            <div class="footer-item xyz-nested"></div>
-            <div class="footer-item xyz-nested"></div>
-            <div class="footer-item xyz-nested"></div>
-          </div>
-        </div>
-      </div>
-    </XyzTransition> -->
-
-    <!-- <button @click="isAnimate = !isAnimate">Animate</button>
-    <XyzTransition
-      xyz="fade up in-left in-rotate-left out-right out-rotate-right"
-    >
-      <div class="square" v-if="isAnimate"></div>
-    </XyzTransition> -->
-
-    <!-- <XyzTransition xyz="fade" v-xyz="[`left-${utilityLevel}`]">
-      <div class="square" v-if="isAnimate"></div>
-    </XyzTransition> -->
-
-    <!-- <XyzTransition xyz="fade small" duration="auto">
-      <div class="item-flex"  v-if="isAnimate">
-        <div class="square"></div>
-        <div class="square xyz-nested"></div>
-        <div class="square xyz-nested"></div>
-        <div class="square xyz-nested"></div>
-      </div>
-    </XyzTransition> -->
-
-    <!-- <XyzTransition
-      appear-visible
-      xyz="fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger"
-    >
-      <div class="card" key="1" v-if="!isHover" @mouseenter="isHover = true">
-        <img
-          src="https://cdn.dribbble.com/users/2417352/screenshots/15197452/media/8e61474be3aef19d7f058bf42db34e18.png"
-          alt="card image"
-          class="card-img"
-        />
-
-        <h2 class="xyz-nested">Hover over to see effect</h2>
-        <p class="xyz-nested">Animation with AnimXYZ</p>
-        <p class="xyz-nested">
-          AnimXYZ is a composable, performant and customizable CSS animation
-          toolkit powered by CSS variables.
-        </p>
-      </div>
-    </XyzTransition>
-
-    <XyzTransition
-      appear-visible
-      v-xyz="{
-        'fade down-5 rotate-right-50% stagger': !isHover1,
-      }"
-    >
-      <div class="card" v-if="!isHover1" @mouseenter="isHover1 = true">
-        <img
-          src="https://cdn.dribbble.com/users/254977/screenshots/15210695/media/c152bccd293ad0ec84e831db21262422.png"
-          alt="card image"
-          class="card-img"
-        />
-        <h2 class="xyz-nested">Hover over to see effect</h2>
-        <p>Animation with AnimXYZ</p>
-        <p>
-          AnimXYZ is a composable, performant and customizable CSS animation
-          toolkit powered by CSS variables.
-        </p>
-      </div>
-    </XyzTransition>
-
-    <XyzTransition
-      appear-visible
-      v-xyz="{ 'fade flip-up flip-left origin-top-right': !isHover2 }"
-    >
-      <div class="card" v-if="!isHover2" @mouseenter="isHover2 = true">
-        <img
-          src="https://cdn.dribbble.com/users/821258/screenshots/15189951/media/bf2fe6f7008607862d9bdc271401d047.jpg"
-          alt="card image"
-          class="card-img"
-        />
-
-        <h2 class="xyz-nested">Hover over to see effect</h2>
-        <p class="xyz-nested">Animation with AnimXYZ</p>
-        <p class="xyz-nested">
-          AnimXYZ is a composable, performant and customizable CSS animation
-          toolkit powered by CSS variables.
-        </p>
-      </div>
-    </XyzTransition>
-
-    <XyzTransition
-      appear-visible
-      v-xyz="{ 'fade front-3 flip-left-50% duration-4': !isHover3 }"
-    >
-      <div class="card" v-if="!isHover3" @mouseenter="isHover3 = true">
-        <img
-          src="https://cdn.dribbble.com/users/3958105/screenshots/15209937/media/10b648afb141f3448c3b05e980fc1f57.png"
-          alt="card image"
-          class="card-img"
-        />
-
-        <h2 class="xyz-nested">Hover over to see effect</h2>
-        <p class="xyz-nested">Animation with AnimXYZ</p>
-        <p class="xyz-nested">
-          AnimXYZ is a composable, performant and customizable CSS animation
-          toolkit powered by CSS variables.
-        </p>
-      </div>
-    </XyzTransition> -->
-    <!-- <XyzTransition
-      appear-visible
-      v-xyz="{ 'small-100% origin-top-right': !isCondition }"
-    >
-      <div
-        class="square"
-        v-if="!isCondition"
-        @mouseenter="isCondition = true"
-      ></div>
-    </XyzTransition> -->
-    <!-- <div class="shape" ></div> -->
-
-    <!-- <XyzTransitionGroup
-        appear
-        xyz="fade small stagger ease-out-back"
-        duration="auto"
-      >
-        <div class="shape" key="1" v-if="toggled">
-          <div class="nav">
-            <a class="xyz-nested nav-item">Home</a>
-            <a class="xyz-nested nav-item">About</a>
-            <a class="xyz-nested nav-item">Contact</a>
-          </div>
-        </div>
-      </XyzTransitionGroup> -->
+    <h1>Modal Animation with AnimXYZ and Vue</h1>
 
     <button
       data-v-689fae14=""
       class="modal-toggle example-button"
-      @click="isDialog = !isDialog"
+      @click="isModal = !isModal"
       autofocus
-      ref="dialogBtn"
+      ref="modalBtn"
       :aria-describedby="modalStatus"
     >
       {{ modalStatus }}
@@ -213,9 +16,9 @@
     <XyzTransition
       duration="auto"
       xyz="fade out-delay-5"
-      @keydown.esc="isDialog = false"
+      @keydown.esc="isModal = false"
     >
-      <div class="dialog_overlay" v-if="isDialog">
+      <div class="dialog_overlay" v-if="isModal">
         <section
           role="dialog"
           id="dialog1"
@@ -237,15 +40,10 @@
               aria-label="Close"
               xyz="fade small in-delay-7"
               class="xyz-nested"
-              @click="isDialog = false"
+              @click="isModal = false"
               title="Close"
             >
-              <svg
-                viewBox="0 0 24 24"
-                focusable="false"
-                class="chakra-icon css-onkibi"
-                aria-hidden="true"
-              >
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
                 <path
                   fill="currentColor"
                   d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
@@ -310,41 +108,22 @@
 export default {
   data() {
     return {
-      toggled: false,
-      isAnimate: true,
-      animate: "",
-      utilityLevel: "5",
-      isHover: false,
-      isHover1: false,
-      isHover2: false,
-      isHover3: false,
-      isCondition: false,
-      isDialog: false,
+      isModal: false,
     };
   },
   computed: {
     modalStatus() {
-      return !this.isDialog ? "Open Modal" : "Close Modal";
+      return !this.isModal ? "Open Modal" : "Close Modal";
     },
   },
   watch: {
-    isDialog(val) {
-      !val && this.$refs.dialogBtn.focus();
+    isModal(val) {
+      !val && this.$refs.modalBtn.focus();
       setTimeout(() => {
         val && this.$refs.email.focus();
       }, 500);
     },
   },
-  methods: {
-    getAttr() {
-      // this.$refs["anim"].$attrs["xyz"] = "fade rotate-right ease-out-back";
-      console.log(this.$refs["anim"].$attrs["xyz"]);
-    },
-    toggleMenu() {
-      this.toggled = !this.toggled;
-    },
-  },
-  mounted() {},
 };
 </script>
 
