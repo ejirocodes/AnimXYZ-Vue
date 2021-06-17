@@ -147,6 +147,7 @@
           v-if="isModal"
           tabindex="-1"
           ref="modal"
+          @keydown.esc="close"
         >
           <div class="modal_top flex xyz-nested" xyz="up-100% in-delay-3">
             <header
