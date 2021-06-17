@@ -1,112 +1,4 @@
 <template>
-  <!-- <div class="xyz-animate">
-    <h1>Modal Animation with AnimXYZ and Vue</h1>
-
-    <button
-      data-v-689fae14=""
-      class="modal-toggle modal-btn-main"
-      @click="isModal = !isModal"
-      autofocus
-      ref="modalBtn"
-      :aria-describedby="modalStatus"
-    >
-      {{ modalStatus }}
-    </button>
-    <XyzTransition
-      duration="auto"
-      xyz="fade out-delay-5"
-      @keydown.esc="isModal = false"
-    >
-      <div class="modal_overlay" v-if="isModal" @click.stop="close">
-        <section
-          role="modal"
-          id="modal1"
-          aria-labelledby="modal1_label"
-          aria-modal="true"
-          class="hidden modal xyz-nested"
-          xyz="fade small stagger ease-out-back"
-        >
-          <div class="modal_top flex xyz-nested" xyz="up-100% in-delay-3">
-            <header
-              id="modal1_label"
-              class="modal_label xyz-nested"
-              xyz="fade right in-delay-7"
-            >
-              Join our community on Slack
-            </header>
-            <button
-              type="button"
-              aria-label="Close"
-              xyz="fade small in-delay-7"
-              class="xyz-nested"
-              @click.stop="isModal = false"
-              title="Close"
-            >
-              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div class="modal_body xyz-nested" xyz="up-100% in-delay-3">
-            <div class="modal_body--top flex justify_center align_center">
-              <img
-                src="../assets/slack.png"
-                alt="slack logo"
-                class="slack_logo"
-              />
-              <img src="../assets/plus.png" alt="plus" class="plus" />
-              <img
-                src="../assets/discord.png"
-                alt="discord logo"
-                class="discord_logo"
-              />
-            </div>
-            <p><span class="bold">929</span> users are registered so far.</p>
-          </div>
-          <form class="modal_form" autocomplete>
-            <label for="email"
-              ><span class="sr-only">Enter your email</span></label
-            >
-            <input
-              id="email"
-              type="email"
-              placeholder="johndoe@email.com"
-              autocomplete="email"
-              aria-describedby="email"
-              class="modal_input"
-              required
-              ref="email"
-            />
-            <button type="submit" class="modal_invite_btn">
-              Get my invite
-            </button>
-            <p>Already joined?</p>
-            <button
-              type="button"
-              aria-describedby="open_slack"
-              class="
-                modal_slack_btn
-                flex
-                align_center
-                justify_center
-                xyz-nested
-              "
-              xyz="fade in-right in-delay-7"
-              id="open_slack"
-            >
-              <span
-                ><img src="../assets/slack.png" alt="slack logo" role="icon"
-              /></span>
-              Open Slack
-            </button>
-          </form>
-        </section>
-      </div>
-    </XyzTransition>
-  </div> -->
   <section class="xyz-animate">
     <h1>Modal Animation with AnimXYZ and Vue</h1>
     <button
@@ -243,9 +135,9 @@ export default {
       if (!this.isModal) {
         this.isModal = true;
         this.$nextTick(() => {
-          const emailRef = this.$refs.modal;
-          console.log(emailRef);
-          emailRef.focus();
+          const modalRef = this.$refs.modal;
+          console.log(modalRef);
+          modalRef.focus();
         });
       }
     },
@@ -271,7 +163,7 @@ export default {
   bottom: 0;
   right: 0;
   left: 0;
-  background: #999999;
+  background: #000;
   opacity: 0.8;
   z-index: 200;
   cursor: pointer;
