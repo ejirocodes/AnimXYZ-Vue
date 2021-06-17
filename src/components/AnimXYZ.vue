@@ -1,5 +1,5 @@
 <template>
-  <div class="xyz-animate">
+  <!-- <div class="xyz-animate">
     <h1>Modal Animation with AnimXYZ and Vue</h1>
 
     <button
@@ -12,13 +12,12 @@
     >
       {{ modalStatus }}
     </button>
-
     <XyzTransition
       duration="auto"
       xyz="fade out-delay-5"
       @keydown.esc="isModal = false"
     >
-      <div class="modal_overlay" v-if="isModal">
+      <div class="modal_overlay" v-if="isModal" @click.stop="close">
         <section
           role="modal"
           id="modal1"
@@ -30,6 +29,129 @@
           <div class="modal_top flex xyz-nested" xyz="up-100% in-delay-3">
             <header
               id="modal1_label"
+              class="modal_label xyz-nested"
+              xyz="fade right in-delay-7"
+            >
+              Join our community on Slack
+            </header>
+            <button
+              type="button"
+              aria-label="Close"
+              xyz="fade small in-delay-7"
+              class="xyz-nested"
+              @click.stop="isModal = false"
+              title="Close"
+            >
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="modal_body xyz-nested" xyz="up-100% in-delay-3">
+            <div class="modal_body--top flex justify_center align_center">
+              <img
+                src="../assets/slack.png"
+                alt="slack logo"
+                class="slack_logo"
+              />
+              <img src="../assets/plus.png" alt="plus" class="plus" />
+              <img
+                src="../assets/discord.png"
+                alt="discord logo"
+                class="discord_logo"
+              />
+            </div>
+            <p><span class="bold">929</span> users are registered so far.</p>
+          </div>
+          <form class="modal_form" autocomplete>
+            <label for="email"
+              ><span class="sr-only">Enter your email</span></label
+            >
+            <input
+              id="email"
+              type="email"
+              placeholder="johndoe@email.com"
+              autocomplete="email"
+              aria-describedby="email"
+              class="modal_input"
+              required
+              ref="email"
+            />
+            <button type="submit" class="modal_invite_btn">
+              Get my invite
+            </button>
+            <p>Already joined?</p>
+            <button
+              type="button"
+              aria-describedby="open_slack"
+              class="
+                modal_slack_btn
+                flex
+                align_center
+                justify_center
+                xyz-nested
+              "
+              xyz="fade in-right in-delay-7"
+              id="open_slack"
+            >
+              <span
+                ><img src="../assets/slack.png" alt="slack logo" role="icon"
+              /></span>
+              Open Slack
+            </button>
+          </form>
+        </section>
+      </div>
+    </XyzTransition>
+  </div> -->
+  <section class="xyz-animate">
+    <h1>Modal Animation with AnimXYZ and Vue</h1>
+    <button
+      class="modal-toggle modal-btn-main"
+      data-modal-prefix-class="simple"
+      data-modal-text="Hello world!"
+      data-modal-title="Title"
+      data-modal-close-text="Close"
+      data-modal-close-title="Close this window"
+      id="label_modal_kdf8e87cga"
+      aria-haspopup="dialog"
+      autofocus
+      ref="modalBtn"
+      @click="isModal = true"
+    >
+      Open Modal
+    </button>
+    <span
+      id="js-modal-overlay"
+      class="simple-modal-overlay"
+      data-background-click="enabled"
+      title="Close this window"
+      v-if="isModal"
+      @click="isModal = false"
+    >
+      <span class="invisible">Close this window</span>
+    </span>
+
+    <div
+      role="dialog"
+      class="simple-modal__wrapper"
+      aria-labelledby="modal-title"
+    >
+      <XyzTransition duration="auto" xyz="fade out-delay-5">
+        <section
+          id="modal1"
+          aria-labelledby="modal1_label"
+          aria-modal="true"
+          class="hidden modal xyz-nested"
+          xyz="fade small stagger ease-out-back"
+          v-if="isModal"
+        >
+          <div class="modal_top flex xyz-nested" xyz="up-100% in-delay-3">
+            <header
+              id="modal1_label modal-title"
               class="modal_label xyz-nested"
               xyz="fade right in-delay-7"
             >
@@ -105,9 +227,9 @@
             </button>
           </form>
         </section>
-      </div>
-    </XyzTransition>
-  </div>
+      </XyzTransition>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -117,11 +239,6 @@ export default {
       isModal: false,
     };
   },
-  computed: {
-    modalStatus() {
-      return !this.isModal ? "Open Modal" : "Close Modal";
-    },
-  },
   watch: {
     isModal(val) {
       !val && this.$refs.modalBtn.focus();
@@ -130,10 +247,72 @@ export default {
       }, 500);
     },
   },
+  methods: {
+    close() {
+      console.log("close");
+      this.isModal = false;
+    },
+  },
 };
 </script>
 
 <style scoped>
+.simple-modal-overlay,
+.simple-animated-modal-overlay,
+.simple-animatedtransform-modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #999999;
+  opacity: 0.8;
+  z-index: 200;
+  cursor: pointer;
+}
+.invisible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.simple-modal,
+.simple-animated-modal,
+.simple-animatedtransform-modal {
+  position: fixed;
+  left: 15%;
+  width: 70%;
+  top: 5vh;
+  max-height: 90vh;
+  border: 2px solid #000;
+  background: #fff;
+  z-index: 667;
+  padding: 2em;
+  right: auto;
+  overflow: auto;
+}
+.simple-modal__wrapper {
+  z-index: 300;
+}
+
+.modal-btn-main {
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  padding: 0.5rem 1rem;
+  transition: 0.2s ease-in-out;
+  transition-property: background-color, box-shadow, color;
+  margin-bottom: 3rem;
+}
+.modal-btn-main:focus {
+  box-shadow: 0 0 0 2px #56ccf2;
+}
 .sr-only {
   position: absolute;
   left: -99999px;
@@ -278,20 +457,6 @@ button {
   cursor: pointer;
 }
 
-.modal-btn-main {
-  border-radius: 0.375rem;
-  display: flex;
-  align-items: center;
-  font-weight: 650;
-  letter-spacing: 0.025em;
-  padding: 0.5rem 1rem;
-  transition: 0.2s ease-in-out;
-  transition-property: background-color, box-shadow, color;
-  margin-bottom: 3rem;
-}
-.modal-btn-main:focus {
-  box-shadow: 0 0 0 2px #56ccf2;
-}
 .xyz-animate {
   display: flex;
   flex-wrap: wrap;
