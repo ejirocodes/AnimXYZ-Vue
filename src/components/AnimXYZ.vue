@@ -88,7 +88,13 @@
             <button
               type="button"
               aria-describedby="open_slack"
-              class="modal_slack_btn flex align_center justify_center xyz-nested"
+              class="
+                modal_slack_btn
+                flex
+                align_center
+                justify_center
+                xyz-nested
+              "
               xyz="fade in-right in-delay-7"
               id="open_slack"
             >
@@ -293,5 +299,18 @@ button {
   align-items: center;
   padding: 2rem;
   flex-direction: column;
+}
+@media (prefers-reduced-motion) {
+  .xyz-appear,
+  .xyz-appear .xyz-nested,
+  .xyz-appear .xyz-appear-nested,
+  .xyz-out,
+  .xyz-out .xyz-nested,
+  .xyz-out .xyz-out-nested,
+  .xyz-in,
+  .xyz-in .xyz-nested,
+  .xyz-in .xyz-in-nested {
+    animation: none !important;
+  }
 }
 </style>
