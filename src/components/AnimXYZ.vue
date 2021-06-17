@@ -155,6 +155,16 @@ export default {
 </script>
 
 <style scoped>
+.simple-modal__wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
 .simple-modal-overlay,
 .simple-animated-modal-overlay,
 .simple-animatedtransform-modal-overlay {
