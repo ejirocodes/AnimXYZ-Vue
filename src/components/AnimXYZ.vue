@@ -111,16 +111,14 @@
     <h1>Modal Animation with AnimXYZ and Vue</h1>
     <button
       class="modal-toggle modal-btn-main"
-      data-modal-prefix-class="simple"
-      data-modal-text="Hello world!"
+      data-modal-text="Open Modal"
       data-modal-title="Title"
       data-modal-close-text="Close"
-      data-modal-close-title="Close this window"
       id="label_modal_kdf8e87cga"
       aria-haspopup="dialog"
+      ref="openButton"
+      @click="open"
       autofocus
-      ref="modalBtn"
-      @click="isModal = true"
     >
       Open Modal
     </button>
@@ -130,11 +128,10 @@
       data-background-click="enabled"
       title="Close this window"
       v-if="isModal"
-      @click="isModal = false"
+      @click="close"
     >
       <span class="invisible">Close this window</span>
     </span>
-
     <div
       role="dialog"
       class="simple-modal__wrapper"
@@ -145,9 +142,11 @@
           id="modal1"
           aria-labelledby="modal1_label"
           aria-modal="true"
-          class="hidden modal xyz-nested"
+          class="modal xyz-nested"
           xyz="fade small stagger ease-out-back"
           v-if="isModal"
+          tabindex="-1"
+          ref="modal"
         >
           <div class="modal_top flex xyz-nested" xyz="up-100% in-delay-3">
             <header
@@ -162,7 +161,7 @@
               aria-label="Close"
               xyz="fade small in-delay-7"
               class="xyz-nested"
-              @click="isModal = false"
+              @click="close"
               title="Close"
             >
               <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
@@ -201,7 +200,6 @@
               aria-describedby="email"
               class="modal_input"
               required
-              ref="email"
             />
             <button type="submit" class="modal_invite_btn">
               Get my invite
@@ -239,18 +237,25 @@ export default {
       isModal: false,
     };
   },
-  watch: {
-    isModal(val) {
-      !val && this.$refs.modalBtn.focus();
-      setTimeout(() => {
-        val && this.$refs.email.focus();
-      }, 500);
-    },
-  },
   methods: {
+    open() {
+      if (!this.isModal) {
+        this.isModal = true;
+        this.$nextTick(() => {
+          const emailRef = this.$refs.modal;
+          console.log(emailRef);
+          emailRef.focus();
+        });
+      }
+    },
     close() {
-      console.log("close");
-      this.isModal = false;
+      if (this.isModal) {
+        this.isModal = false;
+        this.$nextTick(() => {
+          const openButtonRef = this.$refs.openButton;
+          openButtonRef.focus();
+        });
+      }
     },
   },
 };
@@ -310,9 +315,12 @@ export default {
   transition-property: background-color, box-shadow, color;
   margin-bottom: 3rem;
 }
-.modal-btn-main:focus {
-  box-shadow: 0 0 0 2px #56ccf2;
+*:focus {
+  outline: 0 !important;
+  border: 1px solid #eb5757 !important;
+  box-shadow: 0 0 0 2px #eb5757 !important;
 }
+
 .sr-only {
   position: absolute;
   left: -99999px;
@@ -361,9 +369,6 @@ export default {
 .modal_top button {
   height: 2rem;
   width: 2rem;
-}
-.modal_top button:focus {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 .modal_body {
   margin-bottom: 2.4rem;
@@ -415,10 +420,6 @@ export default {
   border: none;
   font-size: 1.2rem;
 }
-.modal_invite_btn:focus {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
-  background: #1e2733;
-}
 
 .modal_invite_btn:hover {
   background: #1e2733;
@@ -436,10 +437,6 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border-radius: 0.2rem;
-}
-.modal_slack_btn:focus {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
-  background: #f7f7f7;
 }
 
 .modal_slack_btn:hover {
