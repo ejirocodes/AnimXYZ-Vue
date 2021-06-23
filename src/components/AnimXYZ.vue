@@ -1,5 +1,16 @@
 <template>
   <section class="xyz-animate">
+    <div class="alerts__wrap copy-content">
+      <div class="alert reduced-motion-alert">
+        <p>
+          AnimXYZ animations are disabled if your browser or OS has reduced
+          motion setting turned on.
+          <a href="https://web.dev/prefers-reduced-motion/" target="_blank">
+            Learn more here.
+          </a>
+        </p>
+      </div>
+    </div>
     <h1>Modal Animation with AnimXYZ and Vue</h1>
     <button
       class="modal-toggle modal-btn-main"
@@ -365,17 +376,32 @@ button {
   padding: 2rem;
   flex-direction: column;
 }
-@media (prefers-reduced-motion) {
-  .xyz-appear,
-  .xyz-appear .xyz-nested,
-  .xyz-appear .xyz-appear-nested,
-  .xyz-out,
-  .xyz-out .xyz-nested,
-  .xyz-out .xyz-out-nested,
-  .xyz-in,
-  .xyz-in .xyz-nested,
-  .xyz-in .xyz-in-nested {
-    animation: none !important;
+.alerts__wrap {
+  display: none;
+}
+.alerts__wrap {
+  max-width: 100%;
+  padding: 1rem;
+  pointer-events: none;
+}
+.reduced-motion-alert {
+  background-color: #eb5757;
+}
+.alert {
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  padding: 0.5rem 0.75rem;
+  pointer-events: all;
+}
+.alert p,
+a {
+  color: #fff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .alerts__wrap {
+    display: block;
   }
 }
 </style>
