@@ -400,6 +400,17 @@ a {
   color: #fff;
 }
 @media (prefers-reduced-motion: reduce) {
+  .xyz-appear,
+  .xyz-appear .xyz-nested,
+  .xyz-appear .xyz-appear-nested,
+  .xyz-out,
+  .xyz-out .xyz-nested,
+  .xyz-out .xyz-out-nested,
+  .xyz-in,
+  .xyz-in .xyz-nested,
+  .xyz-in .xyz-in-nested {
+    animation: none !important;
+  }
   .alerts__wrap {
     display: block;
   }
